@@ -21,15 +21,42 @@ body {
 
 /* Projects */
 .projects {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.project {
+  overflow: hidden;
 }
 
 .project img {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.project:hover img {
+  transform: scale(1.02);
+}
+
+/* Spanning variants */
+.project--span-2col {
+  grid-column: span 2;
+}
+
+.project--span-2row {
+  grid-row: span 2;
+}
+
+/* Offset variants */
+.project--offset img {
+  transform: translateY(20px);
+}
+
+.project--offset:hover img {
+  transform: translateY(20px) scale(1.02);
 }
 
 .caption {
@@ -91,8 +118,30 @@ a:hover::after {
     grid-template-columns: 1fr;
   }
 
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project--span-2col,
+  .project--span-2row {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
   .sidebar {
     position: relative;
     margin-top: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .project--span-2col,
+  .project--span-2row {
+    grid-column: span 1;
+    grid-row: span 1;
   }
 }
